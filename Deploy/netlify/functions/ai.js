@@ -21,7 +21,7 @@ exports.handler = async function(event, context) {
 
     // Initialize Google Gemini AI with your API key
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     // Create a prompt with Reformed theology context
     const prompt = `As Grace.AI, a Reformed theological assistant for young adults, please respond to this question:
