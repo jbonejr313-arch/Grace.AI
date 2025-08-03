@@ -1,70 +1,67 @@
+// netlify/functions/ai.js
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-exports.handler = async (event, context) => {
-  // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
-  }
-
+exports.handler = async function(event, context) {
   try {
-    // Get the message from the request
-    const { message } = JSON.parse(event.body);
+    // Only allow POST requests
+    if (event.httpMethod !== "POST") {
+      return { statusCode: 405, body: "Method Not Allowed" };
+    }
+
+    // Parse the request body to get the user's question
+    const requestBody = JSON.parse(event.body);
+    const userQuestion = requestBody.message;
     
-    if (!message) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Message is required' })
+    if (!userQuestion) {
+      return { 
+        statusCode: 400, 
+        body: JSON.stringify({ error: "No question provided" })
       };
     }
 
-    // Initialize Gemini AI
+    // Initialize Google Gemini AI with your API key
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    // Create the prompt with biblical context
-    const prompt = `You are Grace.AI, a Reformed theology-focused biblical assistant for young adults. 
+    // Create a prompt with Reformed theology context
+    const prompt = `As Grace.AI, a Reformed theological assistant for young adults, please respond to this question:
     
-Your responses should:
-- Be biblically grounded and theologically sound
-- Reflect Reformed/Presbyterian theology when relevant
-- Be accessible to college students and young professionals
-- Include relevant Scripture references
-- Provide practical application
-- Be encouraging and pastoral in tone
+    "${userQuestion}"
+    
+    Follow these guidelines in your response:
+    - Base your answer on Scripture first and foremost
+    - Present a Reformed theological perspective (Calvinistic, emphasizing God's sovereignty)
+    - Include 1-3 relevant Bible references when appropriate
+    - Be pastoral yet direct in addressing sin or error
+    - Keep your response conversational and accessible for young adults
+    - Aim for about 150-300 words unless the question requires more detail
+    
+    Format your response with clear paragraphs and proper spacing.`;
 
-User question: ${message}
-
-Please provide a helpful, biblical response:`;
-
-    // Generate the response
+    // Generate the AI response
     const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    const response = result.response.text();
 
+    // Return a success response
     return {
       statusCode: 200,
+      body: JSON.stringify({ message: response }),
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: text }),
+        'Content-Type': 'application/json'
+      }
     };
 
   } catch (error) {
-    console.error('AI Error:', error);
+    console.log("Error:", error);
     return {
       statusCode: 500,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({ 
-        error: 'Sorry, I encountered an error. Please try again.' 
+        error: "Failed to generate response",
+        details: error.message 
       }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     };
   }
 };
