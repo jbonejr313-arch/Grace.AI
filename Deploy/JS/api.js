@@ -204,27 +204,14 @@ function simulateBibleStudy(topic, audience) {
         conclusion: `As Reformed believers, we find our hope not in ourselves but in God's sovereign grace. May studying His Word deepen your faith and equip you to live faithfully in every area of life, including ${cleanTopic}.`
     };
 }
-// Add this function to your existing api.js file
 
-// Function to send user message to AI and get response
+// Function to send message to AI (temporary placeholder)
 async function sendMessageToAI(message) {
-  try {
-    const response = await fetch('/.netlify/functions/ai', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message }),
-    });
-
-    if (!response.ok) {
-      throw new Error('AI request failed');
+    try {
+        // For now, return a helpful response
+        return "Thank you for your question: '" + message + "'. I'm currently being set up to provide full AI responses. For now, try clicking the suggestion buttons above to generate Bible studies on topics like calling, relationships, doubt, purpose, money, and anxiety!";
+    } catch (error) {
+        console.error('Error:', error);
+        return "I'm sorry, I'm having trouble right now. Please try again in a moment.";
     }
-
-    const data = await response.json();
-    return data.message;
-  } catch (error) {
-    console.error('Error sending message to AI:', error);
-    return "I'm sorry, I'm having trouble processing your request right now. Please try again in a moment.";
-  }
 }
