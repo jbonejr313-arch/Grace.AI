@@ -1,8 +1,0 @@
-{
-  "name": "grace-ai",
-  "version": "1.0.0",
-  "description": "Biblical AI assistant for young adults",
-  "dependencies": {
-    "@google/generative-ai": "^0.2.1"
-  }
-}
