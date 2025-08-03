@@ -205,13 +205,31 @@ function simulateBibleStudy(topic, audience) {
     };
 }
 
-// Function to send message to AI (temporary placeholder)
+// Function to send message to AI - NOW WITH REAL GEMINI INTEGRATION!
 async function sendMessageToAI(message) {
     try {
-        // For now, return a helpful response
-        return "Thank you for your question: '" + message + "'. I'm currently being set up to provide full AI responses. For now, try clicking the suggestion buttons above to generate Bible studies on topics like calling, relationships, doubt, purpose, money, and anxiety!";
+        const response = await fetch('/.netlify/functions/ai', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        return data.message;
     } catch (error) {
-        console.error('Error:', error);
-        return "I'm sorry, I'm having trouble right now. Please try again in a moment.";
+        console.error('Error sending message to AI:', error);
+        return "I'm sorry, I'm having trouble connecting to the AI service right now. Please try again in a moment.";
     }
 }
+
