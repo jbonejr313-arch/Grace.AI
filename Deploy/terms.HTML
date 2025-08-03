@@ -1,0 +1,171 @@
+# Create a terms.html page
+
+terms_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Grace.AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .policy-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .policy-section h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .policy-section p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .policy-section ul, .policy-section ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .last-updated {
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .policy-section .disclaimer {
+            background-color: var(--surface-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .policy-section .disclaimer h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <nav class="top-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="header-banner">
+                <h1 class="banner-title">Terms of Service</h1>
+                <p class="banner-subtitle">Guidelines for using Grace.AI</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="policy-section">
+                <p>Welcome to Grace.AI. Please read these Terms of Service carefully before using our website and services. By accessing or using Grace.AI, you agree to be bound by these Terms.</p>
+                
+                <div class="disclaimer">
+                    <h3>Important Disclaimer</h3>
+                    <p>Grace.AI is designed to provide biblical insights and resources based on Reformed theology. While we strive for theological accuracy, our platform is not a replacement for pastoral care, professional counseling, or thorough biblical study. We encourage users to consult with local pastoral leadership on serious spiritual matters.</p>
+                </div>
+                
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using our website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with these Terms, please do not use our services.</p>
+                
+                <h2>2. Use of Services</h2>
+                <p>Grace.AI provides a platform for exploring biblical insights and theological resources. You agree to use our services only for lawful purposes and in accordance with these Terms. When using our services, you agree not to:</p>
+                <ul>
+                    <li>Use our services in any way that violates any applicable law or regulation</li>
+                    <li>Attempt to interfere with, compromise the system integrity or security, or decipher any transmissions to or from the servers running our service</li>
+                    <li>Use our services to send automated queries to any website or to send any unsolicited commercial email</li>
+                    <li>Impersonate or attempt to impersonate Grace.AI, a Grace.AI employee, another user, or any other person</li>
+                    <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of our services</li>
+                </ul>
+                
+                <h2>3. Intellectual Property</h2>
+                <p>The content on Grace.AI, including text, graphics, logos, images, and software, is the property of Grace.AI or its content suppliers and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our website without our prior written consent.</p>
+                
+                <h2>4. User Contributions</h2>
+                <p>Our service may allow you to submit questions, comments, or feedback. By providing any user contribution, you grant Grace.AI a non-exclusive, transferable, sub-licensable, royalty-free, worldwide license to use, store, display, reproduce, and distribute your content in connection with the operation of our service.</p>
+                
+                <h2>5. Accuracy of Information</h2>
+                <p>We strive to provide accurate biblical and theological information through our platform. However, we make no warranties or representations about the accuracy or completeness of the content provided through our services. Any reliance you place on such information is strictly at your own risk.</p>
+                
+                <h2>6. Theological Perspective</h2>
+                <p>Grace.AI operates from a Reformed theological perspective. While we respect diverse Christian traditions, our content and responses reflect Reformed theological principles. Users should be aware of this theological framework when interpreting our responses.</p>
+                
+                <h2>7. Links to Third-Party Sites</h2>
+                <p>Our website may contain links to third-party websites or services that are not owned or controlled by Grace.AI. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You further acknowledge and agree that Grace.AI shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such websites or services.</p>
+                
+                <h2>8. Termination</h2>
+                <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination, your right to use our services will immediately cease.</p>
+                
+                <h2>9. Limitation of Liability</h2>
+                <p>In no event shall Grace.AI, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use our services.</p>
+                
+                <h2>10. Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. If we make material changes to these Terms, we will notify users by updating the date at the bottom of this page. Your continued use of our website after such modifications will constitute your acknowledgment of the modified Terms and agreement to be bound by them.</p>
+                
+                <h2>11. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
+                
+                <h2>12. Contact Us</h2>
+                <p>If you have any questions about these Terms, please contact us at <a href="mailto:grace.AI202513@gmail.com">grace.AI202513@gmail.com</a>.</p>
+                
+                <p class="last-updated">Last Updated: August 2, 2025</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <p class="footer-tagline">Biblical wisdom for young adults</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html" class="active">Terms</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="footer-copyright">&copy; 2025 Grace.AI</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+'''
+
+print(terms_html)

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Grace.AI | Biblical Insight for Young Adults</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <nav class="top-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="page-content">
+            <div class="page-container">
+                <h1 class="page-title">About Grace.AI</h1>
+                
+                <section class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>Grace.AI exists to help young adults navigate Scripture with theological depth and practical application. Through AI-powered biblical insights, we aim to bridge the gap between Reformed theology and the complex questions facing college students and young professionals today.</p>
+                </section>
+                
+                <section class="about-section">
+                    <h2>Theological Foundation</h2>
+                    <p>Our responses are grounded in Reformed/Presbyterian theology, emphasizing:</p>
+                    <ul class="about-list">
+                        <li><strong>Sola Scriptura</strong> — Scripture is our highest authority</li>
+                        <li><strong>God's Sovereignty</strong> — The Lord is in control of all things</li>
+                        <li><strong>Grace Alone</strong> — Salvation is entirely God's work, not ours</li>
+                        <li><strong>Biblical Truth</strong> — Applying God's unchanging Word to today's challenges</li>
+                    </ul>
+                </section>
+                
+                <section class="about-section">
+                    <h2>Technology</h2>
+                    <p>Grace.AI combines:</p>
+                    <ul class="about-list">
+                        <li>The ESV Bible API for Scripture access</li>
+                        <li>Advanced AI language models for theological explanations</li>
+                        <li>Conservative Presbyterian theological oversight</li>
+                        <li>User-friendly interface designed for young adults</li>
+                    </ul>
+                </section>
+                
+                <section class="about-section">
+                    <h2>Our Purpose</h2>
+                    <p>Young adults often face challenging questions about faith, purpose, relationships, and career decisions. Grace.AI provides biblically grounded perspectives to help navigate these decisions with wisdom.</p>
+                    <p>We believe that Scripture has the answers to life's most important questions, and we're here to make those insights accessible to the next generation.</p>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <p class="footer-tagline">Biblical wisdom for young adults</p>
+                <div class="footer-links">
+                    <a href="about.html">About</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="footer-copyright">&copy; 2025 Grace.AI</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // Set theme based on localStorage
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
+</body>
+</html>

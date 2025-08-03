@@ -1,0 +1,165 @@
+# Create a privacy.html page
+
+privacy_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Grace.AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .policy-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .policy-section h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .policy-section p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .policy-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .last-updated {
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <nav class="top-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="header-banner">
+                <h1 class="banner-title">Privacy Policy</h1>
+                <p class="banner-subtitle">How we protect and handle your information</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="policy-section">
+                <p>At Grace.AI, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website and services.</p>
+                
+                <h2>Information We Collect</h2>
+                <p>We collect information you provide directly to us when you:</p>
+                <ul>
+                    <li>Use our conversation interface to ask questions or request biblical studies</li>
+                    <li>Contact us through our contact form</li>
+                    <li>Subscribe to updates or newsletters</li>
+                </ul>
+                
+                <h3>Types of Information</h3>
+                <p>The information we collect may include:</p>
+                <ul>
+                    <li><strong>Personal Information:</strong> Your name and email address when provided through our contact form.</li>
+                    <li><strong>Usage Data:</strong> Questions you ask, topics you explore, and how you interact with our platform.</li>
+                    <li><strong>Technical Data:</strong> Information about your device, browser type, IP address, and how you access and use our website.</li>
+                </ul>
+                
+                <h2>How We Use Your Information</h2>
+                <p>We use the information we collect to:</p>
+                <ul>
+                    <li>Provide, maintain, and improve our services</li>
+                    <li>Respond to your inquiries and support needs</li>
+                    <li>Develop new features and content based on user interests</li>
+                    <li>Monitor and analyze trends and usage to enhance user experience</li>
+                    <li>Protect against unauthorized access and maintain security of our platform</li>
+                </ul>
+                
+                <h2>Data Storage and Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+                
+                <h2>Third-Party Services</h2>
+                <p>Our website may include links to third-party websites, applications, or services. We are not responsible for the privacy practices or content of these third parties. We encourage you to review the privacy policies of any third-party services you access through our website.</p>
+                
+                <h2>Analytics</h2>
+                <p>We may use third-party analytics services to help us understand how users engage with our website. These services may use cookies and similar technologies to collect information about your use of our website. This information is used to improve our services and user experience.</p>
+                
+                <h2>Children's Privacy</h2>
+                <p>Our services are not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected personal information from a child under 13, we will take steps to delete such information promptly.</p>
+                
+                <h2>Your Rights</h2>
+                <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                <ul>
+                    <li>Access and receive a copy of your personal information</li>
+                    <li>Correct or update inaccurate personal information</li>
+                    <li>Request deletion of your personal information</li>
+                    <li>Object to or restrict certain processing of your personal information</li>
+                </ul>
+                <p>To exercise these rights, please contact us at <a href="mailto:grace.AI202513@gmail.com">grace.AI202513@gmail.com</a>.</p>
+                
+                <h2>Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+                
+                <h2>Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:grace.AI202513@gmail.com">grace.AI202513@gmail.com</a>.</p>
+                
+                <p class="last-updated">Last Updated: August 2, 2025</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">GRACE<span class="logo-dot">.</span>AI</div>
+                <p class="footer-tagline">Biblical wisdom for young adults</p>
+                <div class="footer-links">
+                    <a href="privacy.html" class="active">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="footer-copyright">&copy; 2025 Grace.AI</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+'''
+
+print(privacy_html)
