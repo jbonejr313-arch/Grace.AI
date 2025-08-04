@@ -668,6 +668,7 @@ footer {
 .slide-up {
     animation: slideUp 0.8s ease-out;
 } 
+
 /* Additional page styles */
 .page-content {
     padding: 3rem 2rem 5rem;
@@ -923,7 +924,7 @@ footer {
     }
 }
 
-/* NEW: Message Actions - Copy/Share Buttons */
+/* Message Actions - Copy/Share Buttons */
 .message-actions {
     display: flex;
     gap: 8px;
@@ -970,9 +971,180 @@ footer {
     border-color: #bbf7d0;
 }
 
-/* NEW: Dark mode support for copy/share buttons */
+/* Dark mode support for copy/share buttons */
 [data-theme="dark"] .action-btn.copied {
     background: #064e3b;
     color: #34d399;
     border-color: #065f46;
+}
+
+/* Daily Verse Section */
+.daily-verse-section {
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--tertiary-bg) 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.daily-verse-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.verse-of-day {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px var(--shadow);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.verse-of-day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-text));
+}
+
+.verse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.verse-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin: 0;
+}
+
+.verse-date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.verse-content {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.verse-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--primary-text);
+    font-style: italic;
+    margin: 0 0 1.5rem 0;
+    font-weight: 400;
+    position: relative;
+}
+
+.verse-text::before,
+.verse-text::after {
+    content: '"';
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-family: Georgia, serif;
+}
+
+.verse-reference {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-style: normal;
+}
+
+.verse-insight {
+    background: var(--tertiary-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--secondary-text);
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.verse-insight::before {
+    content: '💡 Reformed Insight: ';
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+.verse-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.verse-share-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.8rem 1.5rem;
+    background: var(--tertiary-bg);
+    color: var(--primary-text);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.verse-share-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.verse-share-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .daily-verse-section {
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .daily-verse-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .verse-of-day {
+        padding: 2rem;
+    }
+    
+    .verse-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .verse-text {
+        font-size: 1.2rem;
+    }
+    
+    .verse-title {
+        font-size: 1.5rem;
+    }
 }
