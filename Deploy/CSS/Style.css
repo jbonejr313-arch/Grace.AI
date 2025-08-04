@@ -922,3 +922,57 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* NEW: Message Actions - Copy/Share Buttons */
+.message-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.message:hover .message-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-text);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.action-btn:hover {
+    background: var(--tertiary-bg);
+    color: var(--primary-text);
+    border-color: var(--accent-color);
+}
+
+.action-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.action-btn.copied {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #bbf7d0;
+}
+
+/* NEW: Dark mode support for copy/share buttons */
+[data-theme="dark"] .action-btn.copied {
+    background: #064e3b;
+    color: #34d399;
+    border-color: #065f46;
+}
