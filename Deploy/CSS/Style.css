@@ -1079,7 +1079,7 @@ footer {
 }
 
 .verse-insight::before {
-    content: '💡 Reformed Insight: ';
+    content: '💡 Insight: ';
     font-weight: 600;
     color: var(--primary-text);
 }
@@ -1148,3 +1148,4 @@ footer {
         font-size: 1.5rem;
     }
 }
+
