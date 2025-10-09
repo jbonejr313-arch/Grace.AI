@@ -1,5 +1,5 @@
-// netlify/functions/ai.js - FIXED VERSION
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+// netlify/functions/ai.js
+const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
 
 exports.handler = async function(event, context) {
   console.log("🚀 Function called!", event.httpMethod);
@@ -24,7 +24,7 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    const requestBody = JSON.parse(event.body);
+    const requestBody = JSON.parse(event.body || "{}");
     const userQuestion = requestBody.message;
     
     if (!userQuestion) {
@@ -37,89 +37,95 @@ exports.handler = async function(event, context) {
 
     console.log("✅ Processing question:", userQuestion);
 
-    // Initialize Google Gemini AI
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.log("❌ GEMINI_API_KEY is missing");
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: "API key not configured" })
+      };
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
     
-    // TRY DIFFERENT MODELS IN ORDER (fallback approach)
     const modelOptions = [
-      "gemini-1.5-flash",  // Most likely to work
-      "gemini-pro",        // Backup option
-      "gemini-1.5-pro"     // If available
+      "gemini-1.5-flash-latest",
+      "gemini-1.5-pro-latest"
     ];
 
-    let model;
     let modelUsed = "";
+    let response = "";
 
-    // Try models until one works
     for (const modelName of modelOptions) {
       try {
         console.log(`🧪 Trying model: ${modelName}`);
-        model = genAI.getGenerativeModel({ 
+        
+        const model = genAI.getGenerativeModel({ 
           model: modelName,
           safetySettings: [
             {
-              category: "HARM_CATEGORY_HARASSMENT",
-              threshold: "BLOCK_ONLY_HIGH",
+              category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+              threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
             },
             {
-              category: "HARM_CATEGORY_HATE_SPEECH",
-              threshold: "BLOCK_ONLY_HIGH",
+              category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+              threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
             },
             {
-              category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-              threshold: "BLOCK_ONLY_HIGH",
+              category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+              threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
             },
             {
-              category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-              threshold: "BLOCK_ONLY_HIGH",
+              category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+              threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
             },
           ],
         });
-        
-        // Test the model with a simple prompt
-        await model.generateContent("test");
+
+        const prompt = `As Grace.AI, a Reformed theological assistant for young adults, please respond to this question:
+    
+"${userQuestion}"
+
+Follow these guidelines:
+- Base your answer on Scripture first and foremost
+- Present a Reformed theological perspective (emphasizing God's sovereignty)
+- Include 1-3 relevant Bible references when appropriate
+- Be pastoral yet direct in addressing sensitive topics like salvation, hell, and eternal consequences
+- Keep your response conversational and accessible for young adults
+- Aim for about 150-300 words unless more detail is needed
+
+Format your response with clear paragraphs.`;
+
+        console.log("🧠 Generating response...");
+        const result = await model.generateContent(prompt);
+        response = result.response.text();
         modelUsed = modelName;
-        console.log(`✅ Using model: ${modelName}`);
+        
+        console.log(`✅ Response generated successfully with ${modelName}`);
         break;
+
       } catch (error) {
         console.log(`❌ Model ${modelName} failed:`, error.message);
+        console.error("Error details:", {
+          message: error.message,
+          status: error.status,
+          statusText: error.statusText
+        });
         continue;
       }
     }
 
-    if (!model || !modelUsed) {
-      throw new Error("No compatible Gemini model available");
+    if (!response) {
+      throw new Error("All models failed to generate a response");
     }
-
-    // Enhanced prompt for Reformed theology
-    const prompt = `As Grace.AI, a Reformed theological assistant for young adults, please respond to this question:
-    
-    "${userQuestion}"
-    
-    Follow these guidelines:
-    - Base your answer on Scripture first and foremost
-    - Present a Reformed theological perspective (emphasizing God's sovereignty)
-    - Include 1-3 relevant Bible references when appropriate
-    - Be pastoral yet direct in addressing sensitive topics like salvation, hell, and eternal consequences
-    - Keep your response conversational and accessible for young adults
-    - Aim for about 150-300 words unless more detail is needed
-    
-    Format your response with clear paragraphs.`;
-
-    console.log("🧠 Generating response...");
-
-    // Generate the AI response
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
-
-    console.log("✅ Response generated successfully");
 
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({ 
         message: response,
-        model_used: modelUsed // For debugging
+        model_used: modelUsed
       })
     };
 
