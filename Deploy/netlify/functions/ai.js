@@ -50,8 +50,9 @@ exports.handler = async function(event, context) {
     const genAI = new GoogleGenerativeAI(apiKey);
     
     const modelOptions = [
-      "gemini-1.5-flash-latest",
-      "gemini-1.5-pro-latest"
+      "gemini-2.5-flash",
+      "gemini-2.0-flash",
+      "gemini-2.5-pro"
     ];
 
     let modelUsed = "";
